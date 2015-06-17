@@ -6,11 +6,6 @@ var controller = require('./log.controller');
 var router = express.Router();
 
 router.all('/', controller.create);
-// router.get('/', controller.index);
-// router.get('/:id', controller.show);
-// router.post('/', controller.create);
-// router.put('/:id', controller.update);
-// router.patch('/:id', controller.update);
-// router.delete('/:id', controller.destroy);
+router.get('/all', controller.index);
 
 module.exports = router;

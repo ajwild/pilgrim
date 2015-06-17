@@ -15,6 +15,8 @@ describe('Controller: MainCtrl', function () {
     $httpBackend = _$httpBackend_;
     $httpBackend.expectGET('/api/things')
       .respond(['HTML5 Boilerplate', 'AngularJS', 'Karma', 'Express']);
+    $httpBackend.expectGET('/api/log/all')
+      .respond([{id: 0, latitude: 0, longitude: 0}, {id: 1, latitude: 1, longitude: 1}]);
 
     scope = $rootScope.$new();
     MainCtrl = $controller('MainCtrl', {
@@ -25,5 +27,10 @@ describe('Controller: MainCtrl', function () {
   it('should attach a list of things to the scope', function () {
     $httpBackend.flush();
     expect(scope.awesomeThings.length).toBe(4);
+  });
+
+  it('should attach a list of markers to the scope', function () {
+    $httpBackend.flush();
+    expect(scope.logs.length).toBe(2);
   });
 });
