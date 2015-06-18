@@ -6,7 +6,8 @@ angular.module('pilgrimApp', [
   'ngSanitize',
   'btford.socket-io',
   'ui.router',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'uiGmapgoogle-maps'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
@@ -14,6 +15,13 @@ angular.module('pilgrimApp', [
 
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
+  })
+
+  .config(function (uiGmapGoogleMapApiProvider) {
+    uiGmapGoogleMapApiProvider.configure({
+      v: '3.17',
+      libraries: 'geometry,visualization'
+    });
   })
 
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {

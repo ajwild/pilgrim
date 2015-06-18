@@ -35,4 +35,8 @@ angular.module('pilgrimApp')
     $scope.$on('$destroy', function () {
       socket.unsyncUpdates('log');
     });
+
+    $scope.map = {
+      zoom: 8
+    };
   });

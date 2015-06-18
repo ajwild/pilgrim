@@ -7,7 +7,19 @@ var Log = require('./log.model');
 exports.index = function (req, res) {
   Log.find(function (err, logs) {
     if (err) { return handleError(res, err); }
-    return res.json(200, logs);
+
+    var markers = [];
+    _.each(logs, function (marker) {
+      if (!marker.location || !marker.location[0] || !marker.location[1]) return;
+
+      markers.push({
+        id: marker.id,
+        latitude: marker.location[1],
+        longitude: marker.location[0]
+      });
+    });
+
+    return res.json(200, markers);
   });
 };
 
