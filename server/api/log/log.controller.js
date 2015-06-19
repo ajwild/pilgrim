@@ -82,6 +82,14 @@ exports.destroy = function (req, res) {
   });
 };
 
+// Deletes all logs from the DB.
+exports.destroyAll = function (req, res) {
+  Log.remove({}, function (err) {
+    if (err) { return handleError(res, err); }
+    return res.send(204);
+  });
+};
+
 function handleError(res, err) {
   return res.send(500, err);
 }

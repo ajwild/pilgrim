@@ -27,8 +27,8 @@ angular.module('pilgrimApp')
 
     $http.get('/api/log/all').success(function (logs) {
       $scope.logs = logs;
-      socket.syncUpdates('log', $scope.logs, function (event, log, logs) {
-        if (event === 'created') { $scope.logs = logs; }
+      socket.syncUpdates('log', $scope.logs, function (event, log) {
+        if (event === 'created') { $scope.logs.push(log); }
       });
     });
 
@@ -53,7 +53,7 @@ angular.module('pilgrimApp')
     };
 
     uiGmapGoogleMapApi.then(function (maps) {
-      $scope.map.options.mapTypeId = google.maps.MapTypeId.TERRAIN;
-      $scope.markers.options.animation = google.maps.Animation.DROP;
+      $scope.map.options.mapTypeId = maps.MapTypeId.TERRAIN;
+      $scope.markers.options.animation = maps.Animation.DROP;
     });
   });

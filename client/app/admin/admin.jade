@@ -7,5 +7,15 @@ div(ng-include='"components/navbar/navbar.html"')
       strong {{user.name}}
       br
       span.text-muted {{user.email}}
-      a.trash(ng-click='delete(user)')
+      a.trash(ng-click='deleteUser(user)')
+        span.glyphicon.glyphicon-trash.pull-right
+
+  p
+    button.btn(ng-click='deleteAllLogs()') Delete all logs
+  ul.list-group
+    li.list-group-item(ng-repeat='log in logs | orderBy: "time"')
+      strong {{log.time}}
+      br
+      span {{log.longitude}}, {{log.latitude}}
+      a.trash(ng-click='deleteLog(log)')
         span.glyphicon.glyphicon-trash.pull-right

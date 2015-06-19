@@ -15,7 +15,7 @@ exports.register = function(socket) {
   });
 }
 
-function onSave(socket, doc, cb) {
+var docToLog = function (doc) {
   var log = {
     id: doc.id,
     latitude: doc.location[1],
@@ -24,9 +24,15 @@ function onSave(socket, doc, cb) {
     time: doc.time,
     battery: doc.battery
   };
+  return log;
+}
+
+function onSave(socket, doc, cb) {
+  var log = docToLog(doc);
   socket.emit('log:save', log);
 }
 
 function onRemove(socket, doc, cb) {
-  socket.emit('log:remove', doc);
+  var log = docToLog(doc);
+  socket.emit('log:remove', log);
 }
