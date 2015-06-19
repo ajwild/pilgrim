@@ -18,7 +18,8 @@ exports.index = function (req, res) {
         longitude: marker.location[0],
         accuracy: marker.accuracy,
         time: marker.time,
-        battery: marker.battery
+        battery: marker.battery,
+        description: marker.description
       });
     });
 

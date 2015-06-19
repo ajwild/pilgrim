@@ -22,7 +22,8 @@ var docToLog = function (doc) {
     longitude: doc.location[0],
     accuracy: doc.accuracy,
     time: doc.time,
-    battery: doc.battery
+    battery: doc.battery,
+    description: doc.description
   };
   return log;
 }

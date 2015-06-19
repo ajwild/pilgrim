@@ -5,10 +5,12 @@ ui-gmap-google-map(center='map.center', zoom='map.zoom', options='map.options')
       click='markers.onClick')
     ui-gmap-windows(options='window.options')
       div(ng-non-bindable)
-        | Time: {{time}}
+        | Time: {{time | date: 'medium'}}
         br
-        | Location: {{latitude}}, {{longitude}}
+        | Location: {{latitude | number: 4}}&deg;N, {{longitude | number: 4}}&deg;E
         br
-        | Accuracy: {{accuracy}}
+        | Accuracy: {{accuracy | number: 0}}m
         br
-        | Battery: {{battery}}
+        | Battery: {{battery | number: 0}}%
+        br
+        | {{description}}
