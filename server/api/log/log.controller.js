@@ -15,7 +15,10 @@ exports.index = function (req, res) {
       markers.push({
         id: marker.id,
         latitude: marker.location[1],
-        longitude: marker.location[0]
+        longitude: marker.location[0],
+        accuracy: marker.accuracy,
+        time: marker.time,
+        battery: marker.battery
       });
     });
 

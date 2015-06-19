@@ -16,7 +16,15 @@ exports.register = function(socket) {
 }
 
 function onSave(socket, doc, cb) {
-  socket.emit('log:save', doc);
+  var log = {
+    id: doc.id,
+    latitude: doc.location[1],
+    longitude: doc.location[0],
+    accuracy: doc.accuracy,
+    time: doc.time,
+    battery: doc.battery
+  };
+  socket.emit('log:save', log);
 }
 
 function onRemove(socket, doc, cb) {

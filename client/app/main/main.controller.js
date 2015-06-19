@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('pilgrimApp')
-  .controller('MainCtrl', function ($scope, $http, socket) {
+  .controller('MainCtrl', function ($scope, $http, socket, uiGmapGoogleMapApi) {
     $scope.awesomeThings = [];
 
     $http.get('/api/things').success(function (awesomeThings) {
@@ -37,6 +37,23 @@ angular.module('pilgrimApp')
     });
 
     $scope.map = {
-      zoom: 8
+      center: [6.8697, 45.9231],
+      zoom: 10,
+      options: {
+        streetViewControl: false
+      }
     };
+
+    $scope.markers = {
+      options: {}
+    };
+
+    $scope.windows = {
+      options: {}
+    };
+
+    uiGmapGoogleMapApi.then(function (maps) {
+      $scope.map.options.mapTypeId = google.maps.MapTypeId.TERRAIN;
+      $scope.markers.options.animation = google.maps.Animation.DROP;
+    });
   });
