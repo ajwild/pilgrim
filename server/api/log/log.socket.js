@@ -23,7 +23,8 @@ var docToLog = function (doc) {
     accuracy: doc.accuracy,
     time: doc.time,
     battery: doc.battery,
-    description: doc.description
+    description: doc.description,
+    route: doc.route
   };
   return log;
 }

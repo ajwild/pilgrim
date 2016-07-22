@@ -25,7 +25,7 @@ angular.module('pilgrimApp')
 
     $scope.logs = [];
 
-    $http.get('/api/log/all').success(function (logs) {
+    $http.get('/api/log/all?route=chamonix-zermatt').success(function (logs) {
       $scope.logs = logs;
       socket.syncUpdates('log', $scope.logs, function (event, log) {
         if (event === 'created') { $scope.logs.push(log); }

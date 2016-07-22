@@ -5,7 +5,10 @@ var Log = require('./log.model');
 
 // Get list of logs
 exports.index = function (req, res) {
-  Log.find(function (err, logs) {
+  var query = {};
+  if (req.query.route) query.route = req.query.route;
+
+  Log.find(query, function (err, logs) {
     if (err) { return handleError(res, err); }
 
     var markers = [];
@@ -19,7 +22,8 @@ exports.index = function (req, res) {
         accuracy: marker.accuracy,
         time: marker.time,
         battery: marker.battery,
-        description: marker.description
+        description: marker.description,
+        route: marker.route
       });
     });
 
@@ -39,7 +43,7 @@ exports.show = function (req, res) {
 // Creates a new log in the DB.
 exports.create = function (req, res) {
   var logEntry = {};
-  var fields = 'time altitude speed direction satellites accuracy battery description'.split(' ');
+  var fields = 'time altitude speed direction satellites accuracy battery description route'.split(' ');
   _.each(fields, function (field) {
     if (req.query.hasOwnProperty(field)) { logEntry[field] = req.query[field]; }
   });

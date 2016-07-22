@@ -20,8 +20,9 @@ var LogSchema = new Schema({
   direction: Number,
   satellites: Number,
   accuracy: Number,
+  battery: Number,
   description: String,
-  battery: Number
+  route: String
 });
 
 module.exports = mongoose.model('Log', LogSchema);
